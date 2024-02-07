@@ -1,0 +1,23 @@
+{
+  "name": "gestion-de-budget-api-v1",
+  "version": "1.0.0",
+  "description": "API pour l'application de gestion de budget",
+  "main": "./server/server.js",
+  "type": "module",
+  "scripts": {
+    "development": "nodemon"
+  },
+  "author": "Babacar Thiam",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
