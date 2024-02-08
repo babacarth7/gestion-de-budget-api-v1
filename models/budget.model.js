@@ -4,13 +4,13 @@ const budgetSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, 'Name is required']
+            required: [true, 'Nom du budget requis!']
         },
 
         amount: {
             type: Number,
-            required: [true, 'Amount is required'],
-            min: [0, 'Amount must be a positive number']
+            required: [true, 'Montant du budget requis!'],
+            min: [0, 'Le montant du budget doit être supérieur à 0']
         },
 
         balance: {
@@ -35,24 +35,24 @@ const transactionSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, 'Name is required']
+            required: [true, 'Nom de la transaction requis']
         },
 
         amount: {
             type: Number,
-            required: [true, 'Amount is required'],
-            min: [0, 'Amount must be a positive number']
+            required: [true, 'Montant de la transaction requis!'],
+            min: [0, 'Le montant de la transaction doit être supérieur à 0']
         },
 
         type: {
             type: String,
             enum: ['depense', 'revenu'],
-            required: [true, 'Type is required']
+            required: [true, 'Type de transaction requis!']
         },
 
         category: {
             type: String,
-            required: [true, 'Category is required']
+            required: [true, 'Categorie de la transaction requis!']
         },
 
         budgetId: {

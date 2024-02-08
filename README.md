@@ -2,6 +2,56 @@
 
 Cette API permet de gérer des budgets et des transactions associées.
 
+## Endpoints disponibles
+
+- `GET /api/budgets`: Récupérer la liste des budgets.
+- `POST /api/budgets`: Créer un nouveau budget.
+- `GET /api/budgets/:id`: Lire les détails d'un budget spécifique.
+- `PUT /api/budgets/:id`: Mettre à jour un budget existant.
+- `DELETE /api/budgets/:id`: Supprimer un budget existant.
+
+- `GET /api/transactions`: Récupérer la liste des transactions.
+- `POST /api/transactions`: Créer une nouvelle transaction.
+- `GET /api/transactions/:id`: Lire les détails d'une transaction spécifique.
+- `PUT /api/transactions/:id`: Mettre à jour une transaction existante.
+- `DELETE /api/transactions/:id`: Supprimer une transaction existante.
+
+## Paramètres acceptés
+
+### Budgets
+- `name` (string, required): Nom du budget.
+- `amount` (number, required): Montant du budget.
+
+### Transactions
+- `name` (string, required): Nom de la transaction.
+- `amount` (number, required): Montant de la transaction.
+- `type` (string, required): Type de la transaction (dépense ou revenu).
+- `category` (string, required): Catégorie de la transaction.
+- `budgetId` (string, required): ID du budget associé à la transaction.
+
+## Réponses renvoyées
+
+Toutes les réponses renvoyées par l'API sont au format JSON.
+
+### Succès
+- `200 OK`: La requête a été traitée avec succès.
+
+### Erreurs
+- `400 Bad Request`: Requête invalide, paramètres manquants ou incorrects.
+- `404 Not Found`: Ressource non trouvée, ID invalide ou introuvable.
+- `500 Internal Server Error`: Erreur interne du serveur, veuillez réessayer ultérieurement.
+
+## Exemples d'utilisation
+
+### Créer un budget
+```json
+POST /api/budgets
+{
+    "name": "Alimentation",
+    "amount": 500
+}
+
+
 ## Ajouter un Budget
 
 Pour ajouter un nouveau budget, utilisez la méthode POST sur l'endpoint `/api/budgets`. Le corps de la requête doit être au format JSON avec les propriétés `name` et `amount`.

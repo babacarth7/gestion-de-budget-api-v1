@@ -1,4 +1,5 @@
 import { Budget, Transaction } from '../models/budget.model.js';
+import dbErrorHandler from '../helpers/dbErrorHandler.js';
 
 // Créer un nouveau budget
 const create = async (req, res) => {
@@ -6,9 +7,8 @@ const create = async (req, res) => {
         const budget = new Budget(req.body)
         await budget.save()
         return res.status(200).json({ message: "Budget ajouté avec succès!" })
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: "Erreur lors de l'ajout du budget." });
+    } catch (err) {
+        return res.status(400).json({ error: dbErrorHandler.getErrorMessage(err)});
     }
 }
 
@@ -17,9 +17,8 @@ const list = async (req, res) => {
     try {
         const budgets = await Budget.find();
         res.json(budgets);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: "Erreur lors de la récupération des budgets." });
+    } catch (err) {
+        return res.status(400).json({ error: dbErrorHandler.getErrorMessage(err)});
     }
 };
 
