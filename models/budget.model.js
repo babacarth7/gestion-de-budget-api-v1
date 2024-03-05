@@ -70,35 +70,6 @@ const transactionSchema = new mongoose.Schema(
     }
 );
 
-// Pré-accrochage avant enregistrement pour ajuster le budget en fonction du type de transaction
-transactionSchema.pre('save', async function(next) {
-    try {
-        const budget = await Budget.findById(this.budgetId);
-
-        if (!budget) {
-            throw new Error('Budget inexistant');
-        }
-
-        if (this.type === 'depense' && this.amount > budget.balance) {
-            throw new Error('Solde insuffisant');
-        }
-
-        if (this.type === 'depense') {
-            budget.balance -= this.amount;
-        } else if (this.type === 'revenu') {
-            budget.amount += this.amount; 
-            budget.balance += this.amount;
-        }
-
-        await budget.save();
-        next();
-    } catch (error) {
-        next(error);
-    }
-});
-
-
-
 const Budget = mongoose.model('Budget', budgetSchema);
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
