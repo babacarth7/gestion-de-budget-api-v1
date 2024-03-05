@@ -30,6 +30,9 @@ const create = async (req, res) => {
     if (err.message === "Budget inexistant") {
       return res.status(400).json({ error: "Identifiant de budget incorrect" });
     }
+    if (err.message === "Fond insuffisant") {
+      return res.status(400).json({ error: "Fond insuffisant pour cette dépense" });
+    }
     return res.status(400).json({ error: dbErrorHandler.getErrorMessage(err) });
   }
 };
